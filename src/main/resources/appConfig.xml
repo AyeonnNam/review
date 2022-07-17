@@ -3,6 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <bean id="memberService" class="hi.core.member.MemberServiceImpl">
-    <constructor-arg name="memberRepository" ref="memberRepository"></constructor-arg>
+    <constructor-arg name="memberRepository"  ref="memberRepository"></constructor-arg>
 </bean>
+
+    <bean id="memberRepository" class="hi.core.member.MemoryMemberRepository"></bean>
+
+    <bean id ="orderService" class="hi.core.order.OrderServiceImpl">
+        <constructor-arg name="memberRepository" ref="memberRepository"></constructor-arg>
+        <constructor-arg name="discountPolicy" ref="discountPolicy"></constructor-arg>
+    </bean>
+
+    <bean id="discountPolicy" class="hi.core.discount.FixDiscountPolicy"></bean>
+
 </beans>

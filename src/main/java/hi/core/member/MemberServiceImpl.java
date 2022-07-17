@@ -4,17 +4,17 @@ import hi.core.MemberRepository;
 
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberRepository m ;
+    private final MemberRepository memberRepository ;
 
-    public MemberServiceImpl(MemberRepository m) {
-        this.m = m;
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
 
     @Override
     public void join(Member member) {
 
-         m.save(member);
+         memberRepository.save(member);
 
 
 
@@ -22,6 +22,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member findMember(Long memberId) {
-        return m.findById(memberId);
+        return memberRepository.findById(memberId);
     }
 }
