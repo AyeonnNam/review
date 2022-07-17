@@ -13,6 +13,6 @@
         <constructor-arg name="discountPolicy" ref="discountPolicy"></constructor-arg>
     </bean>
 
-    <bean id="discountPolicy" class="hi.core.discount.FixDiscountPolicy"></bean>
+    <bean id="discountPolicy" class="hi.core.discount.RateDiscountPolicy"></bean>
 
 </beans>
