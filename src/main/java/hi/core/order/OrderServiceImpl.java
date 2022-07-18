@@ -3,7 +3,10 @@ package hi.core.order;
 import hi.core.MemberRepository;
 import hi.core.discount.DiscountPolicy;
 import hi.core.member.Member;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     //private final은 왜 붙는 걸까 = 값 할당 필수
@@ -14,6 +17,7 @@ public class OrderServiceImpl implements OrderService{
     // 인터페이스에만 의존
     private final DiscountPolicy discountPolicy;
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;

@@ -18,13 +18,14 @@ public class StatefulServiceTest {
         StatefulService statefulService3 = ac.getBean(StatefulService.class);
 
         //싱글톤을 사용하는 클래스(스프링빈)에 상태를 유지하게 하는 필드를 사용하게 되면
-        statefulService1.order("userA", 100000);
+        int userA = statefulService1.order("userA", 100000);
         statefulService2.order("userB",200000);
-        statefulService3.order("userC",300000);
+       int userC =  statefulService3.order("userC",300000);
 
         //주문결과 공유하게됨, 스프링 빈에는 지역변수를 사용하자
-        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(300000);
+        Assertions.assertThat(userA).isEqualTo(100000);
 
+        Assertions.assertThat(userC).isEqualTo(300000);
     }
 
 
