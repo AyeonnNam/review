@@ -3,9 +3,13 @@ package hi.core.order;
 import hi.core.MemberRepository;
 import hi.core.discount.DiscountPolicy;
 import hi.core.member.Member;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
 @Component
 public class OrderServiceImpl implements OrderService{
 
@@ -31,14 +35,14 @@ public class OrderServiceImpl implements OrderService{
 //        this.memberRepository = memberRepository;
 //    }
 
-        @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-          //  System.out.println("OrderServiceImpl.OrderServiceImpl");
-        // System.out.println(" emberRepository = " + memberRepository);
-        //System.out.println(" discountPolicy = " + discountPolicy);
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+    //    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//          //  System.out.println("OrderServiceImpl.OrderServiceImpl");
+//        // System.out.println(" emberRepository = " + memberRepository);
+//        //System.out.println(" discountPolicy = " + discountPolicy);
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     //orderService에 구현체(구체객체)를 누군가 생성, 주입해줘야 합니다.
 
