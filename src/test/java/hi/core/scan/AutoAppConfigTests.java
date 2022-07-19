@@ -6,6 +6,7 @@ import hi.core.member.MemberService;
 import hi.core.member.MemberServiceImpl;
 import hi.core.order.Order;
 import hi.core.order.OrderService;
+import hi.core.order.OrderServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -26,6 +27,11 @@ public class AutoAppConfigTests {
         assertThat(memberService).isInstanceOf(MemberService.class);
 
         OrderService bean = ac.getBean(OrderService.class);
+
+        OrderServiceImpl bean1 = ac.getBean(OrderServiceImpl.class);
+        MemberRepository memberRepository = bean1.getMemberRepository();
+        System.out.println("memberRepository = " + memberRepository);
+
 
     }
 

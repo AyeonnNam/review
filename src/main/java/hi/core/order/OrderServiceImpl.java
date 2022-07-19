@@ -10,17 +10,32 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService{
 
     //private final은 왜 붙는 걸까 = 값 할당 필수
-    private final MemberRepository memberRepository;
+//    @Autowired
+    private  MemberRepository memberRepository;
     //DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     // 인터페이스에만 의존
-    private final DiscountPolicy discountPolicy;
+//@Autowired
+    private   DiscountPolicy discountPolicy;
 
+    //setter 수정자 의존관계
 //    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        //System.out.println("OrderServiceImpl.setDiscountPolicy");
+//        this.discountPolicy = discountPolicy;
+//    }
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        //System.out.println("OrderServiceImpl.setMemberRepository");
+//        this.memberRepository = memberRepository;
+//    }
+
+        @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        System.out.println("memberRepository = " + memberRepository);
-        System.out.println("discountPolicy = " + discountPolicy);
+          //  System.out.println("OrderServiceImpl.OrderServiceImpl");
+        // System.out.println(" emberRepository = " + memberRepository);
+        //System.out.println(" discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
