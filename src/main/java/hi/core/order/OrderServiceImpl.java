@@ -11,13 +11,13 @@ public class OrderServiceImpl implements OrderService{
 
     //private final은 왜 붙는 걸까 = 값 할당 필수
 //    @Autowired
-    private  MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
     //DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     // 인터페이스에만 의존
 //@Autowired
-    private   DiscountPolicy discountPolicy;
+    private  final DiscountPolicy discountPolicy;
 
     //setter 수정자 의존관계
 //    @Autowired
