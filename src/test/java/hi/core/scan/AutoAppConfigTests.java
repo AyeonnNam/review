@@ -1,6 +1,7 @@
 package hi.core.scan;
 
 import hi.core.AutoAppConfig;
+import hi.core.MemberRepository;
 import hi.core.member.MemberService;
 import hi.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
@@ -12,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class AutoAppConfigTests {
 
-    ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
 
 
     @Test
@@ -20,4 +21,8 @@ public class AutoAppConfigTests {
         MemberService memberService = ac.getBean(MemberService.class);
         assertThat(memberService).isInstanceOf(MemberService.class);
     }
+
+
+
+
 }
