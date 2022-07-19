@@ -9,7 +9,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository ;
 
-    @Autowired
+    @Autowired //@Autowired는 디폴트라 굳이 명시 안해도 돼.
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

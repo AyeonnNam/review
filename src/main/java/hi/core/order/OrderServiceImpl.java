@@ -17,8 +17,10 @@ public class OrderServiceImpl implements OrderService{
     // 인터페이스에만 의존
     private final DiscountPolicy discountPolicy;
 
-    @Autowired
+//    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = " + memberRepository);
+        System.out.println("discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
