@@ -16,9 +16,9 @@ import static org.springframework.context.annotation.FilterType.*;
 )
 public class AutoAppConfig {
 
+    //@Component가 붙은 빈과 동일한 이름을 가진 빈을 수동등록하기
 //    @Bean(name="memoryMemberRepository")
 //    public MemberRepository memberRepository(){
 //        return new MemoryMemberRepository();
 //    }
-
 }

@@ -22,15 +22,24 @@ public class AutoAppConfigTests {
 
     @Test
     void basicScan(){
+      //Overriding bean definition for bean 'memoryMemberRepository' with a different definition
+        MemberRepository memberRepository = ac.getBean(MemberRepository.class);
+       // System.out.println("memberRepository = " + memberRepository.getClass());
         MemberService memberService = ac.getBean(MemberService.class);
+        MemberServiceImpl memberService1 = ac.getBean(MemberServiceImpl.class);
 
-        assertThat(memberService).isInstanceOf(MemberService.class);
+        Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
+//
 
-        OrderService bean = ac.getBean(OrderService.class);
-
-        OrderServiceImpl bean1 = ac.getBean(OrderServiceImpl.class);
-        MemberRepository memberRepository = bean1.getMemberRepository();
-        System.out.println("memberRepository = " + memberRepository);
+//        MemberService memberService = ac.getBean(MemberService.class);
+//
+//        assertThat(memberService).isInstanceOf(MemberService.class);
+//
+//        OrderService bean = ac.getBean(OrderService.class);
+//
+//        OrderServiceImpl bean1 = ac.getBean(OrderServiceImpl.class);
+//        MemberRepository memberRepository = bean1.getMemberRepository();
+//        System.out.println("memberRepository = " + memberRepository);
 
 
     }

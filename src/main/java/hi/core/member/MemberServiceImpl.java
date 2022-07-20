@@ -7,12 +7,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberRepository memberRepository ;
+    private  MemberRepository memberRepository ;
 
-    @Autowired //@Autowired는 디폴트라 굳이 명시 안해도 돼.
-    public MemberServiceImpl(MemberRepository memberRepository) {
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        System.out.println("MemberServiceImpl.setMemberRepository");
         this.memberRepository = memberRepository;
     }
+
+    //    @Autowired //@Autowired는 디폴트라 굳이 명시 안해도 돼.
+//    public MemberServiceImpl(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
 
 
     @Override
