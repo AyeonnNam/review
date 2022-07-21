@@ -8,18 +8,19 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-
+//@RequiredArgsConstructor
 @Component
 public class OrderServiceImpl implements OrderService{
 
     //private final은 왜 붙는 걸까 = 값 할당 필수
-//    @Autowired
-    private final MemberRepository memberRepository;
+  //  @Autowired
+    private  MemberRepository memberRepository;
     // 인터페이스에만 의존
-//@Autowired
-    private  final DiscountPolicy discountPolicy;
+  //  @Autowired
+    private  DiscountPolicy discountPolicy;
     //DiscountPolicy discountPolicy = new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
@@ -38,12 +39,13 @@ public class OrderServiceImpl implements OrderService{
 //    }
 //
         @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("fixDiscountPolicy") DiscountPolicy discountPolicy) {
           //  System.out.println("OrderServiceImpl.OrderServiceImpl");
         // System.out.println(" emberRepository = " + memberRepository);
         //System.out.println(" discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
+            System.out.println("discountPolicy = " + discountPolicy);
     }
 
     //orderService에 구현체(구체객체)를 누군가 생성, 주입해줘야 합니다.

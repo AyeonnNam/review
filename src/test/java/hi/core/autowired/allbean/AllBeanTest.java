@@ -55,8 +55,9 @@ public class AllBeanTest {
             this.discountPolicyMap = discountPolicyMap;
         }
 
-        public int Discount(Member member, int itemPrice, String discountName){
-            DiscountPolicy discountPolicy = discountPolicyMap.get(discountName);
+        public int Discount(Member member, int itemPrice, String discountCode){
+            DiscountPolicy discountPolicy = discountPolicyMap.get(discountCode);
+            System.out.println("discountCode = " + discountCode);
             System.out.println("discountPolicy = " + discountPolicy);
             return discountPolicy.discount(member,itemPrice);
         }

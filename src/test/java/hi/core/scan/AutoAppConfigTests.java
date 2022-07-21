@@ -2,6 +2,10 @@ package hi.core.scan;
 
 import hi.core.AutoAppConfig;
 import hi.core.MemberRepository;
+import hi.core.discount.DiscountPolicy;
+import hi.core.discount.RateDiscountPolicy;
+import hi.core.member.Grade;
+import hi.core.member.Member;
 import hi.core.member.MemberService;
 import hi.core.member.MemberServiceImpl;
 import hi.core.order.Order;
@@ -23,12 +27,24 @@ public class AutoAppConfigTests {
     @Test
     void basicScan(){
       //Overriding bean definition for bean 'memoryMemberRepository' with a different definition
-        MemberRepository memberRepository = ac.getBean(MemberRepository.class);
-       // System.out.println("memberRepository = " + memberRepository.getClass());
-        MemberService memberService = ac.getBean(MemberService.class);
-        MemberServiceImpl memberService1 = ac.getBean(MemberServiceImpl.class);
+//        MemberRepository memberRepository = ac.getBean(MemberRepository.class);
+//       // System.out.println("memberRepository = " + memberRepository.getClass());
+//        MemberService memberService = ac.getBean(MemberService.class);
+//        MemberServiceImpl memberService1 = ac.getBean(MemberServiceImpl.class);
+//
+//        Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
 
-        Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
+        Member member = new Member(2L,"남아연", Grade.VIP);
+        MemberService memberService = ac.getBean(MemberService.class);
+        memberService.join(member);
+        OrderService orderService = ac.getBean(OrderService.class);
+        Order order = orderService.createOrder(2L, "과자", 200000);
+        int discountPrice = order.getDiscountPrice();
+        Assertions.assertThat(discountPrice).isEqualTo(1000);
+        System.out.println("discountPrice = " + discountPrice);
+
+
+
 //
 
 //        MemberService memberService = ac.getBean(MemberService.class);
