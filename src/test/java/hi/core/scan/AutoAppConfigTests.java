@@ -40,7 +40,7 @@ public class AutoAppConfigTests {
         OrderService orderService = ac.getBean(OrderService.class);
         Order order = orderService.createOrder(2L, "과자", 200000);
         int discountPrice = order.getDiscountPrice();
-        Assertions.assertThat(discountPrice).isEqualTo(1000);
+        Assertions.assertThat(discountPrice).isEqualTo(20000);
         System.out.println("discountPrice = " + discountPrice);
 
 

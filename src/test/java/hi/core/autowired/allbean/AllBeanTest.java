@@ -5,6 +5,7 @@ import hi.core.discount.DiscountPolicy;
 import hi.core.discount.FixDiscountPolicy;
 import hi.core.member.Grade;
 import hi.core.member.Member;
+import hi.core.member.MemberService;
 import hi.core.order.Order;
 import hi.core.order.OrderService;
 import hi.core.order.OrderServiceImpl;
@@ -24,44 +25,47 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
+
+
 public class AllBeanTest {
 
-        @Test
-        public void AllBeanTest(){
-        ApplicationContext ac =
-                new AnnotationConfigApplicationContext(AutoAppConfig.class, DiscountService.class);
-            DiscountService discountService = ac.getBean(DiscountService.class);
-            Member member = new Member(1L,"남아연",Grade.VIP);
-            int discount = discountService.Discount(member, 20000, "rateDiscountPolicy");
-            Assertions.assertThat(discount).isEqualTo(2000);
-            System.out.println("discount = " + discount);
+    @Test
+    public void discountService(){
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class, DiscountService.class);
+        DiscountService discountService = ac.getBean(DiscountService.class);
+        MemberService memberService = ac.getBean(MemberService.class);
 
+        Member member = new Member(2L, "남아연",Grade.VIP);
+        memberService.join(member);
 
-        }
+        int discountPrice = discountService.Discount(member, 3870000, 1);
+        System.out.println("discountPrice = " + discountPrice);
+     //   Assertions.assertThat(discountPrice).isEqualTo(387000);
+        //index 0 = fixDiscountPolicy
+        //index 1 = rateDiscountPolicy
 
-
+    }
 
 
     @Component
-   public static class DiscountService{
+      static class DiscountService{
+          private final Map<String, DiscountPolicy> discountPolicyMap;
+          private final List<DiscountPolicy> discountPolicies;
 
-    private final List<DiscountPolicy> discountPolicies;
-    private final Map<String, DiscountPolicy> discountPolicyMap;
-
-    @Autowired
-        public DiscountService(List<DiscountPolicy> discountPolicies,
-                               Map<String, DiscountPolicy> discountPolicyMap) {
-            this.discountPolicies = discountPolicies;
+        public DiscountService(Map<String, DiscountPolicy> discountPolicyMap, List<DiscountPolicy> discountPolicies) {
             this.discountPolicyMap = discountPolicyMap;
+            this.discountPolicies = discountPolicies;
         }
 
-        public int Discount(Member member, int itemPrice, String discountCode){
-            DiscountPolicy discountPolicy = discountPolicyMap.get(discountCode);
-            System.out.println("discountCode = " + discountCode);
-            System.out.println("discountPolicy = " + discountPolicy);
-            return discountPolicy.discount(member,itemPrice);
-        }
-    }
+
+          public int Discount(Member member, int price, int discountCode) {
+              DiscountPolicy discountPolicy = discountPolicies.get(discountCode);
+              int discount = discountPolicy.discount(member,price);
+
+
+              return discount;
+          }
+      }
 
 
 }

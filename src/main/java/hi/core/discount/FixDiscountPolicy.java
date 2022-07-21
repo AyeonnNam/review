@@ -3,6 +3,7 @@ package hi.core.discount;
 import hi.core.member.Grade;
 import hi.core.member.Member;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component

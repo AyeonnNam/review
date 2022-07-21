@@ -39,13 +39,13 @@ public class OrderServiceImpl implements OrderService{
 //    }
 //
         @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("fixDiscountPolicy") DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
           //  System.out.println("OrderServiceImpl.OrderServiceImpl");
         // System.out.println(" emberRepository = " + memberRepository);
         //System.out.println(" discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-            System.out.println("discountPolicy = " + discountPolicy);
+
     }
 
     //orderService에 구현체(구체객체)를 누군가 생성, 주입해줘야 합니다.
