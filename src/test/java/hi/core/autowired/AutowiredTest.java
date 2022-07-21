@@ -19,11 +19,15 @@ public class AutowiredTest {
 ApplicationContext ac =
         new AnnotationConfigApplicationContext(TestConfig.class);
 
+
+
 @Test
 public void callBean(){
     Assertions.assertThrows(NoSuchBeanDefinitionException.class,
             ()->ac.getBean(Member.class));
 }
+
+
 
 @Configuration
 @ComponentScan

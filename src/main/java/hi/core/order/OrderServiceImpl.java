@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-//@RequiredArgsConstructor
+
 @Component
 public class OrderServiceImpl implements OrderService{
 
@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService{
 //        //System.out.println("OrderServiceImpl.setMemberRepository");
 //        this.memberRepository = memberRepository;
 //    }
-
+//
         @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
           //  System.out.println("OrderServiceImpl.OrderServiceImpl");
